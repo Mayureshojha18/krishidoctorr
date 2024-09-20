@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Krishak Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Super Krishak</h2>
+            <ul>
+                <li class="inactive">App Overview</li>
+                <li class="inactive">Notifications</li>
+                <li class="inactive">Farmers</li>
+                <li class="inactive">Krishi Trainings</li>
+                <li class="inactive">Quiz</li>
+                <li class="inactive">Articles</li>
+                <li class="inactive">Krishi Calculator</li>
+                <li class="inactive">Jachum</li>
+                <li class="active">Krishi Doctor</li>
+                <li class="inactive">Crops</li>
+                <li class="inactive">Krishi China</li>
+                <li class="inactive">Community</li>
+                <li class="inactive">Referrals & Redeem</li>
+                <li class="inactive">App Version</li>
+                <li class="inactive">Advertisement Center</li>
+            </ul>
+        </aside>
+        <main class="main-content">
+            <div class="dropdown">
+                <button class="dropdown-toggle" id="dropdownMenuButton" aria-expanded="false">
+                    SuperKrishak
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <button class="dropdown-item" onclick="logout()">Logout</button>
+                </div>
+            </div>
+            <h1>KRISHI DOCTOR</h1>
+            <div class="chart-container">
+                <div class="chart-item">
+                    <h2>Crops Requested</h2>
+                    <p>Total Crops: 54</p>
+                    <canvas id="cropsChart"></canvas>
+                </div>
+                <div class="chart-item">
+                    <h2>Disease Detection</h2>
+                    <select id="diseaseSelect" onchange="updateDiseaseChart()">
+                        <option value="all">All</option>
+                    </select>
+                    <canvas id="diseaseChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-item full-width">
+                <h2>Disease Requests</h2>
+                <select id="diseaseRequestSelect" onchange="updateDiseaseRequestChart()">
+                    <option value="All" selected>All</option>
+                </select>
+                <div class="time-filter">
+                    <button onclick="updateTimeFilter('daily')" class="active">Daily</button>
+                    <button onclick="updateTimeFilter('weekly')">Weekly</button>
+                    <button onclick="updateTimeFilter('monthly')">Monthly</button>
+                    <button onclick="updateTimeFilter('yearly')">Yearly</button>
+                </div>
+                <canvas id="diseaseRequestChart"></canvas>
+            </div>
+            <div class="chart-item full-width">
+                <h2>Crops</h2>
+                <input type="text" id="searchInput" onkeyup="searchCrops()" placeholder="Search for crops">
+                <select id="sortSelect" onchange="sortTable()">
+                    <option value="name">Name</option>
+                    <option value="nameDesc">Name (Descending)</option>
+                    <option value="diseases">No. of Diseases</option>
+                    <option value="diseasesDesc">No. of Diseases (Descending)</option>
+                </select>
+                <table id="cropsTable">
+                    <thead>
+                        <tr>
+                            <th>Crop Name</th>
+                            <th>No. of Diseases</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cropsTableBody">
+                        <!-- Data for each crop will be populated by JavaScript -->
+                    </tbody>
+                </table>
+                <div class="pagination">
+                    <button onclick="prevPage()">«</button>
+                    <span id="pageNumber">1</span>
+                    <button onclick="nextPage()">»</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
